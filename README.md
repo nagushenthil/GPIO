@@ -37,9 +37,32 @@ To analyze the operation of the **GPIO Toggle-Pin API** by developing an Embedde
 15. Run the program on the S32K144 board.
 
 ---
+## Program
+```
+#include "sdk_project_config.h"
+void delay(volatile int cycles)
+{
+    while(cycles--);
+}
+
+int main(void)
+{
+   CLOCK_DRV_Init(&clockMan1_InitConfig0);
+   PINS_DRV_Init(NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0);
+   PINS_DRV_SetPins(PTD, 1 << 15);
+  for (;;)
+  {
+      delay(720000);
+      PINS_DRV_TogglePins(PTD, 1 << 15);
+
+  }
+}
+
+
+```
 ## OUTPUT
 
-
+<img width="1650" height="1030" alt="image" src="https://github.com/user-attachments/assets/06d4d2ac-d80e-499c-97dd-7e2a5458d35b" />
 
 
 
